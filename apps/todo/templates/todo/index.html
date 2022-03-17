@@ -17,6 +17,17 @@
         {% endfor %}
         <p>{{ form.submit() }}</p>
     </form>
+    <table>
+        <tr>
+            <th>ToDo</th>
+        </tr>
+            {% for task in tasks %}
+        <tr>
+            
+            <td>{{task.todo}}</td>
+        </tr>
+            {% endfor %}
+    </table>
 
 </body>
 

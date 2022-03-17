@@ -14,6 +14,8 @@ todo = Blueprint(
 @todo.route("/",methods = ['GET', 'POST'])
 def index():
     form = ToDoForm()
+    tasks = db.session.query(ToDo).all()
+
     if form.validate_on_submit(): #submitされた際に実行
         task = ToDo(
             todo = form.todo.data
@@ -21,5 +23,4 @@ def index():
         db.session.add(task)
         db.session.commit()
         return redirect(url_for("todo.index"))    
-
-    return render_template("todo/index.html",form=form)
+    return render_template("todo/index.html",form=form,tasks = tasks)
