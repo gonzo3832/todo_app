@@ -24,7 +24,13 @@
             {% for task in tasks %}
         <tr>
             
-            <td>{{task.todo}}</td>
+            <td>
+                {{task.todo}}
+                <form action="{{url_for('todo.delete', id = task.id)}}" method = "POST">
+                    {{form.csrf_token}}
+                    <input type="submit" value='Done!'>
+                </form>
+            </td>
         </tr>
             {% endfor %}
     </table>

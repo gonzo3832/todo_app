@@ -1,8 +1,10 @@
 from re import I
 from apps.app import db
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from apps.todo.forms import ToDoForm
 from apps.todo.models import ToDo
+
+
 todo = Blueprint(
     'todo',
     __name__,
@@ -24,3 +26,11 @@ def index():
         db.session.commit()
         return redirect(url_for("todo.index"))    
     return render_template("todo/index.html",form=form,tasks = tasks)
+
+
+@todo.route('/delete/<id>', methods = ['POST'])
+def delete(id):
+    task = db.session.query(ToDo).filter_by(id=id).first()
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for('todo.index'))
