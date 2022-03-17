@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template
-
+from re import I
+from apps.app import db
+from flask import Blueprint, render_template, redirect, url_for
+from apps.todo.forms import ToDoForm
+from apps.todo.models import ToDo
 todo = Blueprint(
     'todo',
     __name__,
@@ -8,6 +11,15 @@ todo = Blueprint(
 
 )
 
-@todo.route("/")
+@todo.route("/",methods = ['GET', 'POST'])
 def index():
-    return render_template("todo/index.html")
+    form = ToDoForm()
+    if form.validate_on_submit(): #submitされた際に実行
+        task = ToDo(
+            todo = form.todo.data
+        )
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("todo.index"))    
+
+    return render_template("todo/index.html",form=form)
