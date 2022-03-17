@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9dfdcf8aec66d01945905a0ae10efb933a78a98bd26129148262542075d2f97a"
+            "sha256": "81cc8f069a7b7127245b782aea9961b488464b575b6762207aba057b79fab4cb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -63,6 +63,13 @@
             ],
             "index": "pypi",
             "version": "==1.0.0"
+        },
+        "git-tree": {
+            "hashes": [
+                "sha256:73150c529def5d50582f09c37f2796bb88a4a77a2f44a89195a15a86bcd84afe"
+            ],
+            "index": "pypi",
+            "version": "==0.1.1"
         },
         "greenlet": {
             "hashes": [
